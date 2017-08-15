@@ -9,14 +9,21 @@ const Store = observable({
   },
   setCellData(row, column, data) {
     const cellIndexString = this.cellIndexToString(row, column);
-    this.sheet.set(cellIndexString, data);
+    this.sheet.set(cellIndexString, '' + data);
   },
   cellIndexToString(row, column) {
     return row + '_' + column;
   },
-  setSelectedCell(row,column) {
+  cellStringToIndex(cellString) {
+    return cellString.split('_');
+  },
+  getSelectedCellData() {
+    const cellIndexArray = this.cellStringToIndex(this.selectedCell);
+    return this.getCellData(cellIndexArray[0], cellIndexArray[1]);
+  },
+  setSelectedCell: mobx.action(function (row, column) {
     this.selectedCell = this.cellIndexToString(row, column);
-  }
+  }),
 });
 
 window.Store = Store;
