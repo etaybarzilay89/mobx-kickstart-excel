@@ -4,7 +4,6 @@ import s from './App.scss';
 import Row from '../Row';
 import Header from '../Header';
 import FormulaEditor from '../FormulaEditor';
-import DevTools from 'mobx-react-devtools';
 
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
           {_.times(10, rowIndex => <Row key={rowIndex} rowIndex={rowIndex}/>)}
         </tbody>
       </table>
-      <DevTools/>
     </div>
   );
 }
