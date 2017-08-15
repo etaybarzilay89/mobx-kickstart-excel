@@ -4,13 +4,13 @@ import s from './Cell.scss';
 
 function Cell({rowIndex, cellIndex}) {
   return (
-      <td className={s.cell}></td>
+    <td className={s.cell}/>
   );
 }
 
 Cell.propTypes = {
-    rowIndex: PropTypes.number.isRequired,
-    cellIndex: PropTypes.number.isRequired
+  rowIndex: PropTypes.number.isRequired,
+  cellIndex: PropTypes.number.isRequired
 };
 
 export default Cell;
