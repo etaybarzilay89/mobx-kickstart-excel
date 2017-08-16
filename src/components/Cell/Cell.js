@@ -3,11 +3,27 @@ import PropTypes from 'prop-types';
 import s from './Cell.scss';
 import Store from '../Store/Store';
 import {observer} from 'mobx-react';
+import {computed} from 'mobx';
 
-function Cell({rowIndex, cellIndex}) {
-  return (
-    <td className={s.cell} onClick={() => Store.setSelectedCell(rowIndex, cellIndex)}>{Store.getCellData(rowIndex, cellIndex)}</td>
-  );
+
+class Cell extends React.Component {
+  componentWillMount() {
+    const {rowIndex, cellIndex} = this.props;
+    this.isSelectedStyle = computed(() => {
+      return Store.getSelectedCell() === Store.cellIndexToString(rowIndex, cellIndex) ? s.selected : ' ';
+    });
+  }
+
+  render() {
+    const {rowIndex, cellIndex} = this.props;
+    return (
+      <td
+        className={s.cell + ' ' + this.isSelectedStyle.get()}
+        onClick={() => Store.setSelectedCell(rowIndex, cellIndex)}
+        >{Store.getCellData(rowIndex, cellIndex)}</td>
+    );
+  }
+
 }
 
 Cell.propTypes = {
