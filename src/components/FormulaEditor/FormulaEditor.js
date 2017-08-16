@@ -53,9 +53,31 @@ InputWithState.propTypes = {
 
 const InputWithStateObserver = observer(InputWithState);
 
+// const selectedCellDataString = function () {
+//   const selectedCellData = Store.getSelectedCellData();
+//   return selectedCellData ? selectedCellData : '';
+// };
+
+const selectedCellString = function () {
+  const selectedCellArray = Store.cellStringToIndex(Store.getSelectedCell());
+  const letter = String.fromCharCode(parseInt(selectedCellArray[1]) + 'A'.charCodeAt(0));
+  const number = parseInt(selectedCellArray[0]) + 1;
+  return letter + number;
+};
+
+const cellValueFromString = function(cellDataString) {
+  return 0 + 1;
+};
+
+const setSelectedCellData = function (data) {
+  const cellDataString = data.substr(1);
+  const cellDataValue = cellValueFromString(cellDataString);
+  Store.setSelectedCellData(eval(cellDataValue));
+};
+
 const FormulaEditor = observer(() => (
   <div className={s.formulaEditor}>
-        Formula: <InputWithStateObserver value={'=' + Store.getSelectedCellData()} onChange={() => {}}/>
+        Formula: <InputWithStateObserver value={'=' + selectedCellString()} onChange={data => setSelectedCellData(data)}/>
   </div>
 
 ));
