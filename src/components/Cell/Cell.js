@@ -12,6 +12,11 @@ class Cell extends React.Component {
     this.isSelectedStyle = computed(() => {
       return Store.getSelectedCell() === Store.cellIndexToString(rowIndex, cellIndex) ? s.selected : ' ';
     });
+
+    this.computeValue = computed(() => {
+      const cellFormula = Store.getCellFormula(rowIndex, cellIndex);
+      return Store.computeValue(cellFormula);
+    });
   }
 
   render() {
@@ -20,7 +25,7 @@ class Cell extends React.Component {
       <td
         className={s.cell + ' ' + this.isSelectedStyle.get()}
         onClick={() => Store.setSelectedCell(rowIndex, cellIndex)}
-        >{Store.getCellData(rowIndex, cellIndex)}</td>
+        >{this.computeValue.get()}</td>
     );
   }
 
@@ -32,3 +37,6 @@ Cell.propTypes = {
 };
 
 export default observer(Cell);
+
+
+//{Store.getCellFormula(rowIndex, cellIndex)}
