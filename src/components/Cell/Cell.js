@@ -37,6 +37,3 @@ Cell.propTypes = {
 };
 
 export default observer(Cell);
-
-
-//{Store.getCellFormula(rowIndex, cellIndex)}

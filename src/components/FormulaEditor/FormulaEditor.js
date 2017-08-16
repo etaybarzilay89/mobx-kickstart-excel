@@ -53,28 +53,11 @@ InputWithState.propTypes = {
 
 const InputWithStateObserver = observer(InputWithState);
 
-// const selectedCellFormulaString = function () {
-//   const selectedCellFormula = Store.getSelectedCellFormula();
-//   return selectedCellFormula ? selectedCellFormula : '';
-// };
-
 const selectedCellString = function () {
-  // const selectedCellArray = Store.cellStringToIndex(Store.getSelectedCell());
-  // const letter = String.fromCharCode(parseInt(selectedCellArray[1]) + 'A'.charCodeAt(0));
-  // const number = parseInt(selectedCellArray[0]) + 1;
-  // return letter + number;
   return Store.getSelectedCellFormula();
 };
 
-// const cellValueFromString = function(cellFormulaString) {
-//   return 0 + 1;
-// };
-
 const setSelectedCellFormula = function (formula) {
-  // const cellFormulaString = formula.substr(1);
-  // const cellFormulaValue = cellValueFromString(cellFormulaString);
-  // Store.setSelectedCellFormula(eval(cellFormulaValue));
-
   const cellFormulaString = formula.substr(1);
   Store.setSelectedCellFormula(cellFormulaString);
 };
